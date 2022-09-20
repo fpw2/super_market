@@ -13,6 +13,7 @@ export default function Cart(props) {
     return total + product.price * product.quantity
   },0)
 
+  // return array with two key: value
   const lineItems = cart.map(product => {
     return ({price: product.price_id, quantity: product.quantity})
   })
@@ -21,8 +22,8 @@ export default function Cart(props) {
     stripe.redirectToCheckout({
       lineItems: lineItems,
       mode: "payment",
-      // successUrl: "https://react-tutorial.app/",
-      // cancelUrl: "https://react-tutorial.app/", 
+      successUrl: "https://fpw-supermarket.netlify.app/",
+      cancelUrl: "https://fpw-supermarket.netlify.app/", 
       customerEmail: email
     })
     .then((response) => {
