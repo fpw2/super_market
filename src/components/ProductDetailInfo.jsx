@@ -1,13 +1,18 @@
 import Button from "../ui-kit/Button";
+import {useDispatch} from "react-redux"
+import {addProduct} from "../redux/store"
 
-export default function ProductDetailInfo({product, description, price, onProductAdd }) {
+export default function ProductDetailInfo(props) {
+  const {product} = props
+
+  const dispatch = useDispatch()
   
   return (
     <>
       <p>
-        {description} sold at <strong>{price}€</strong> per piece.
+        {product.description} sold at <strong>{product.price}€</strong> per piece.
       </p>
-      <Button onClick={()=> onProductAdd(product)}>{price}€</Button>
+      <Button onClick={()=> dispatch(addProduct(product))}>Add for {product.price}€</Button>
     </>
   );
 }

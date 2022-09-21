@@ -1,12 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
+import { useSelector } from "react-redux"
+import { cartCountSelector } from "../redux/store";
 
-export default function Navbar(props) {
-  const {cart} = props
-
-  // summ of quantity in all cart
-  const quantityCart = cart.reduce((total, product) => {
-    return total + product.quantity
-  },0)
+export default function Navbar() {
+  const cartCount = useSelector(cartCountSelector)
 
   return (
     <nav className="navbar">
@@ -24,7 +21,7 @@ export default function Navbar(props) {
           <NavLink to="/products" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>Products</NavLink>
         </li>
         <li>
-          <Link to="/cart" className="nav-item nav-cart btn btn-accent">Cart ({quantityCart})</Link>
+          <Link to="/cart" className="nav-item nav-cart btn btn-accent">Cart ({cartCount})</Link>
         </li>
       </ul>
     </nav>

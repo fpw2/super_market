@@ -10,7 +10,7 @@ import Loader from "../layout/Loader";
 export default function Products(props) {
   const [products, setProducts] = useState([]); // if it doesn't work look at {}
 
-  // USING PRODUCTS.JSON
+  // USING PRODUCTS.JSON from public/data/products.json
   // const {get, loading} = useFetch("/data")
   // useEffect(() => {
   //   get("/products.json")

@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import Button from "../ui-kit/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { addProduct, removeProduct } from "../redux/store";
 
-/**
- * Display the card of a product
- * @param {object} props
- * @returns html
- */
 export default function Product(props) {
-  const { details, cart } = props;
+  const { details } = props;
+
+  const dispatch = useDispatch() // for access to reducers
+  const cart = useSelector(state => state.cart)
+
   const productFromCart = cart.find(product => product.id === details.id)
-  // doens't work if all product haven't not at least one product
   const quantity = productFromCart ? productFromCart.quantity : 0;  
 
   return (
@@ -37,12 +37,12 @@ export default function Product(props) {
       <div className="product-checkout">
         <div>
         { quantity > 0 && 
-          <Button onClick={()=> props.onProductDelete(details.id)} className="product-delete" outline>
+          <Button onClick={()=> dispatch(removeProduct(details))} className="product-delete" outline>
             x
           </Button>
         }
         </div>
-        <Button onClick={()=> props.onProductAdd(details)} outline>{details.price}€</Button>
+        <Button onClick={()=> dispatch(addProduct(details))} outline>{details.price}€</Button>
       </div>
     </div>
   );

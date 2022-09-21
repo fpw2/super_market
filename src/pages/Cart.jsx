@@ -1,17 +1,19 @@
 import { useState } from "react";
-import {loadStripe} from "@stripe/stripe-js"
+import { loadStripe } from "@stripe/stripe-js"
+import { useSelector } from "react-redux";
+import { totalCartSelector } from "../redux/store";
 import Input from "../ui-kit/Input"
 import Button from "../ui-kit/Button"
 
 const stripeLoadedPromise = loadStripe("pk_test_51HsqkCGuhXEITAut89vmc4jtjYd7XPs8hWfo2XPef15MFqI8rCFc8NqQU9WutlUBsd8kmNqHBeEmSrdMMpeEEyfT00KzeVdate")
 
-export default function Cart(props) {
-  const { cart } = props;
+export default function Cart() {
   const [email, setEmail] = useState("")
+
+  const cart = useSelector(state => state.cart)
+  const totalCart = useSelector(totalCartSelector)
  
-  const totalCart = cart.reduce((total, product) => {
-    return total + product.price * product.quantity
-  },0)
+
 
   // return array with two key: value
   const lineItems = cart.map(product => {
