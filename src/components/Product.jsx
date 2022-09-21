@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Button from "../ui-kit/Button";
+import {useContext} from "react"
+import { AppContext } from "../context/AppContext"
 
 /**
  * Display the card of a product
@@ -7,8 +9,14 @@ import Button from "../ui-kit/Button";
  * @returns html
  */
 export default function Product(props) {
-  const { details, cart } = props;
-  const productFromCart = cart.find(product => product.id === details.id)
+  const { details } = props;
+
+  /**
+   * Using a context
+   */
+  const app = useContext(AppContext)
+
+  const productFromCart = app.getProductFromCart(details.id)
   // doens't work if all product haven't not at least one product
   const quantity = productFromCart ? productFromCart.quantity : 0;  
 
@@ -37,12 +45,12 @@ export default function Product(props) {
       <div className="product-checkout">
         <div>
         { quantity > 0 && 
-          <Button onClick={()=> props.onProductDelete(details.id)} className="product-delete" outline>
+          <Button onClick={()=> app.handleProductDelete(details.id)} className="product-delete" outline>
             x
           </Button>
         }
         </div>
-        <Button onClick={()=> props.onProductAdd(details)} outline>{details.price}€</Button>
+        <Button onClick={()=> app.handleProductAdd(details)} outline>{details.price}€</Button>
       </div>
     </div>
   );

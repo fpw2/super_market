@@ -2,18 +2,21 @@ import { useState } from "react";
 import {loadStripe} from "@stripe/stripe-js"
 import Input from "../ui-kit/Input"
 import Button from "../ui-kit/Button"
+import {useContext} from "react"
+import { AppContext } from "../context/AppContext"
 
 const stripeLoadedPromise = loadStripe("pk_test_51HsqkCGuhXEITAut89vmc4jtjYd7XPs8hWfo2XPef15MFqI8rCFc8NqQU9WutlUBsd8kmNqHBeEmSrdMMpeEEyfT00KzeVdate")
 
-export default function Cart(props) {
-  const { cart } = props;
+export default function Cart() {
+  /**
+   * Using a context
+   */
+  const app = useContext(AppContext)
+  const cart = app.cart
+
   const [email, setEmail] = useState("")
  
-  const totalCart = cart.reduce((total, product) => {
-    return total + product.price * product.quantity
-  },0)
-
-  // return array with two key: value
+  // return array with two {key: value}
   const lineItems = cart.map(product => {
     return ({price: product.price_id, quantity: product.quantity})
   })
@@ -60,7 +63,7 @@ export default function Cart(props) {
               Product
             </th>
             <th width="20%">Unit price</th>
-            <th width="10%">Quanity</th>
+            <th width="10%">Quantity</th>
             <th width="25%">Total</th>
           </tr>
         </thead>
@@ -85,7 +88,7 @@ export default function Cart(props) {
           <tr>
             <th colSpan="2"></th>
             <th className="cart-highlight">Total</th>
-            <th className="cart-highlight">{totalCart} €</th>
+            <th className="cart-highlight">{app.getTotalCart()} €</th>
           </tr>
         </tfoot>
       </table>

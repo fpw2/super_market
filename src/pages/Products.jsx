@@ -7,19 +7,8 @@ import Loader from "../layout/Loader";
  * Display the page of all products received
  * @returns html
  */
-export default function Products(props) {
+export default function Products() {
   const [products, setProducts] = useState([]); // if it doesn't work look at {}
-
-  // USING PRODUCTS.JSON
-  // const {get, loading} = useFetch("/data")
-  // useEffect(() => {
-  //   get("/products.json")
-  //     .then(data => {
-  //       console.log(data)
-  //       setProducts(data)
-  //     })
-  //     .catch(error => console.log(error))
-  // }, [get, products])
 
   const { get, loading } = useFetch(
     "https://react-tutorial-demo.firebaseio.com/"
@@ -43,9 +32,6 @@ export default function Products(props) {
           <Product
             key={product.id}
             details={product}
-            cart={props.cart}
-            onProductAdd={props.onProductAdd}
-            onProductDelete={props.onProductDelete}
           />
         ))}
       </div>

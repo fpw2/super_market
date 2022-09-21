@@ -1,12 +1,14 @@
 import { Link, NavLink } from "react-router-dom";
+import {useContext} from "react"
+import { AppContext } from "../context/AppContext"
+import Button from "../ui-kit/Button";
 
-export default function Navbar(props) {
-  const {cart} = props
-
-  // summ of quantity in all cart
-  const quantityCart = cart.reduce((total, product) => {
-    return total + product.quantity
-  },0)
+export default function Navbar() {
+  /**
+   * Using a context
+   */
+  const app = useContext(AppContext)
+  const lightheme = app.lightheme
 
   return (
     <nav className="navbar">
@@ -14,6 +16,9 @@ export default function Navbar(props) {
         SuperM
       </Link>
       <ul>
+        <li className="nav-item">
+          <Button className="theme-switcher" onClick={app.handleThemeClick}>{lightheme ? "Dark" : "Light"}</Button>
+        </li>
         <li className="nav-item">
           <NavLink to="/home" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>Home</NavLink>
         </li>
@@ -24,7 +29,7 @@ export default function Navbar(props) {
           <NavLink to="/products" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>Products</NavLink>
         </li>
         <li>
-          <Link to="/cart" className="nav-item nav-cart btn btn-accent">Cart ({quantityCart})</Link>
+          <Link to="/cart" className="nav-item nav-cart btn btn-accent">Cart ({app.getCartQuantity()})</Link>
         </li>
       </ul>
     </nav>
