@@ -7,7 +7,7 @@ import Loader from "../layout/Loader";
  * Display the page of all products received
  * @returns html
  */
-export default function Products(props) {
+export default function Products() {
   const [products, setProducts] = useState([]); // if it doesn't work look at {}
 
   // USING PRODUCTS.JSON from public/data/products.json
@@ -43,9 +43,6 @@ export default function Products(props) {
           <Product
             key={product.id}
             details={product}
-            cart={props.cart}
-            onProductAdd={props.onProductAdd}
-            onProductDelete={props.onProductDelete}
           />
         ))}
       </div>
