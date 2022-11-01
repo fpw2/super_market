@@ -36,7 +36,8 @@ body.dark {
   color: var(--white);
   --neutral-5: #222;
   --surface-color: #444;
-  --surface-shadow: #222}
+  --surface-shadow: #222
+}
 
 h1 {
   font-size: 36px;
