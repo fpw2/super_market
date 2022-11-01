@@ -28,8 +28,11 @@ const store = configureStore({
     reducer: cartSlice.reducer
 })
 
+// Actions
 const {addProduct,removeProduct} = cartSlice.actions;
 
+
+// Selector
 const cartCountSelector = (state) => {
     return state.cart.reduce((total, product) => {
         return total + product.quantity
