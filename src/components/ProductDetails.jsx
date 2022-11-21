@@ -12,7 +12,7 @@ export default function ProductDetails(props) {
 
   useEffect(() => {
     get(`productinfo/id${id}.json`).then((data) => setProduct(data));
-  }, []);
+  }, [get, id]);
 
   return (
     <div className="product-details-layout">

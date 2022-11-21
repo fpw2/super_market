@@ -20,7 +20,7 @@ export default function Products() {
         setProducts(data);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [get]);
 
   return (
     <div className="products-layout">
