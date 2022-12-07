@@ -1,7 +1,7 @@
 {
   "name": "super_market",
   "version": "0.1.0",
-  "homepage": "https://fpw-supermarket.netlify.app/home",
+  "homepage": "/home",
   "private": true,
   "dependencies": {
     "@stripe/stripe-js": "^1.36.0",
