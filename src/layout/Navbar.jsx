@@ -20,7 +20,7 @@ export default function Navbar() {
           <Button className="theme-switcher" onClick={app.handleThemeClick}>{lightheme ? "Dark" : "Light"}</Button>
         </li>
         <li className="nav-item">
-          <NavLink to="/home" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>Home</NavLink>
+          <NavLink to="/" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>Home</NavLink>
         </li>
         <li className="nav-item">
           <NavLink to="/about" className={({ isActive }) => (isActive ? "nav-item-active" : "")}>About us</NavLink>
