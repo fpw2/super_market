@@ -290,7 +290,6 @@ input:focus {
 .tabs a {
   text-decoration: none;
   padding-bottom: 10px;
-  color: var(--black);
   padding-left: 15px;
   padding-right: 15px;
 }
